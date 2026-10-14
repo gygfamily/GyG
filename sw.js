@@ -1,0 +1,21 @@
+// Guarda la app para que abra rápido. Siempre intenta la versión más nueva primero.
+const CACHE = 'gyg-v5';
+const BASE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './logo.png', './logo-grande.png'];
+self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(BASE))); self.skipWaiting(); });
+self.addEventListener('activate', e => e.waitUntil(
+  caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())
+));
+self.addEventListener('fetch', e => {
+  const url = new URL(e.request.url);
+  if (e.request.method !== 'GET') return;
+  // Librería y fuentes: se guardan para que la app abra también sin cobertura
+  if (/cdn\.jsdelivr\.net|fonts\.googleapis\.com|fonts\.gstatic\.com/.test(url.hostname)) {
+    e.respondWith(caches.match(e.request).then(c => c || fetch(e.request).then(r => { const copia = r.clone(); caches.open(CACHE).then(k => k.put(e.request, copia)); return r; })));
+    return;
+  }
+  if (url.origin !== location.origin) return;
+  e.respondWith(
+    fetch(e.request).then(r => { const copia = r.clone(); caches.open(CACHE).then(c => c.put(e.request, copia)); return r; })
+      .catch(() => caches.match(e.request))
+  );
+});
