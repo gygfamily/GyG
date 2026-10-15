@@ -1,5 +1,5 @@
 // Guarda la app para que abra rápido. Siempre intenta la versión más nueva primero.
-const CACHE = 'gyg-v5';
+const CACHE = 'gyg-v7';
 const BASE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './logo.png', './logo-grande.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(BASE))); self.skipWaiting(); });
 self.addEventListener('activate', e => e.waitUntil(
