@@ -1,0 +1,17 @@
+GyG - todos los archivos (caché gyg-v10)
+
+carpeta-GyG/  -> lo que va en tu carpeta GyG (la de GitHub Desktop).
+   Copia TODO lo de dentro (no la carpeta) en tu carpeta GyG, elige "Reemplazar",
+   y en GitHub Desktop: Commit to main -> Push origin.
+   - index.html, sw.js: la app (morado suave, iconos animados, castigos, fotos...)
+   - logo.svg e icon-180/192/512.png: logo e iconos actuales
+   - icon-*-v2.png: iconos con nombre nuevo (pendiente que el manifest los use)
+   - CLAUDE.md: instrucciones del proyecto
+   - demo/: demo instalable (gygfamily.github.io/GyG/demo/)
+   OJO: manifest.webmanifest NO va aquí: usa el que ya tienes en tu carpeta.
+
+extras/ -> para guardar, NO subir:
+   - logo-gyg.png: logo original en grande
+   - GyG-plantilla-index.html: copia sin datos de conexión (para tu amigo)
+   - cambios-supabase.sql: SQL de foto y castigos (YA EJECUTADO)
+   - demo-para-ver-en-claude.html: la demo en un solo archivo
